@@ -1,6 +1,8 @@
 # pokemon-card
 Display Pokemon Information using Typescript
 
+(No compiler needed) 
+
 # Usage (Development)
 
 Typescript:
