@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 const pokemonAPI = "https://pokeapi.co/api/v2/pokemon";
 const pokemonAPIImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"; // $(pokemonIndex).png
 console.log("pokemon api: " + pokemonAPI);
-const baseURL = "http://localhost:3000";
+const baseURL = "https://basic-pokemon-card.herokuapp.com";
 function getParam(param, url) {
     if (!url)
         url = window.location.href;
