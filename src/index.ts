@@ -2,6 +2,7 @@ const pokemonAPI = "https://pokeapi.co/api/v2/pokemon"
 const pokemonAPIImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" // $(pokemonIndex).png
 console.log("pokemon api: " + pokemonAPI)
 const baseURL = "http://localhost:3000"
+let loadingState = true
 
 interface PokemonList {
     count: number
@@ -57,7 +58,6 @@ function createPokemonCard(divID: string, cardTextContent: string, cardImageSrc:
     _cardText.setAttribute("class", "card-text")
     _cardText.innerHTML = cardTextContent
 
-    // Append
     _card.append(_img)
     _card.append(_cardBody)
     _cardBody.append(_cardText)
@@ -107,6 +107,11 @@ let getList = async (): Promise<PokemonList> => {
     return await resp.json()
 }
 
+function loading(d: string) {
+    let loadingContainer = document.querySelector(".pokemon-list-loading-container") as HTMLDivElement
+    loadingContainer.style.display = d
+}
+
 (async function () {
     let listOfPokemon = await getList()
     createPokemonListActionButton(listOfPokemon.previous, listOfPokemon.next)
@@ -116,5 +121,7 @@ let getList = async (): Promise<PokemonList> => {
         let _name = p.name.toUpperCase()
         createPokemonCard(_id[1], _name, pokemonAPIImage + _id[1] + '.png')
     });
+    loading("none")
+    loadingState = false
     document.getElementById("title")?.setAttribute("href", baseURL)
 })()

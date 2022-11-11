@@ -12,6 +12,7 @@ const pokemonAPI = "https://pokeapi.co/api/v2/pokemon";
 const pokemonAPIImage = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"; // $(pokemonIndex).png
 console.log("pokemon api: " + pokemonAPI);
 const baseURL = "http://localhost:3000";
+let loadingState = true;
 function getParam(param, url) {
     if (!url)
         url = window.location.href;
@@ -34,7 +35,6 @@ function createPokemonCard(divID, cardTextContent, cardImageSrc) {
     let _cardText = document.createElement("div");
     _cardText.setAttribute("class", "card-text");
     _cardText.innerHTML = cardTextContent;
-    // Append
     _card.append(_img);
     _card.append(_cardBody);
     _cardBody.append(_cardText);
@@ -73,6 +73,10 @@ let getList = () => __awaiter(void 0, void 0, void 0, function* () {
     let resp = yield fetch(_api);
     return yield resp.json();
 });
+function loading(d) {
+    let loadingContainer = document.querySelector(".pokemon-list-loading-container");
+    loadingContainer.style.display = d;
+}
 (function () {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
@@ -84,6 +88,8 @@ let getList = () => __awaiter(void 0, void 0, void 0, function* () {
             let _name = p.name.toUpperCase();
             createPokemonCard(_id[1], _name, pokemonAPIImage + _id[1] + '.png');
         });
+        loading("none");
+        loadingState = false;
         (_a = document.getElementById("title")) === null || _a === void 0 ? void 0 : _a.setAttribute("href", baseURL);
     });
 })();
