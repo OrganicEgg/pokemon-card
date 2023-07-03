@@ -1,13 +1,12 @@
-# pokemon-card
-Display Pokemon Information using Typescript
+## TypeScript Pokemon Fetcher
+This is a sample TypeScript code that fetches and displays Pokemon data from the PokeAPI.
 
-(No compiler needed) 
 
 # Usage (Development)
 
-## Typescript:
+## Typescript
 `tsc --watch`
-## Local Server:
+## Local Server
 `cd dist/`
 <br/>
 `http-server --port 3000 -c-1 --watch`
